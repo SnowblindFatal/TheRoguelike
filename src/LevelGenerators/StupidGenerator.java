@@ -6,5 +6,10 @@ package LevelGenerators;
  * Time: 6:19
  * Package: LevelGenerators
  */
+
 public class StupidGenerator {
+    public StupidGenerator()
+    {
+        System.out.println("hihi");
+    }
 }

@@ -14,5 +14,6 @@ public class MainClass
     {
         System.out.println("helo");
         StupidGenerator newMap = new StupidGenerator();
+        System.out.print("lul");
     }
 }
