@@ -1,0 +1,111 @@
+#Name: string. default: "DefaultTerrain" Name of the feature. REMEMBER " "
+#Sprite: string of the filename. default: "earth.png". What sprite should represent the feature. 
+#Symbol: string of the symbol. default: "#". ASCII Symbol for reading the map from a file (or something). REMEMBER " "
+#Colour: tuple with three values. default: (255, 255, 255). What Colour is the Ascii Symbol.
+#Passable: True/False. default: True. (not to be used in pathfinding, rather collision checking) 
+#Pathable: True/False. default: True. used in pathfinding.
+#Swimmable: True/False. default: False. whether a swimmer can swim in it
+#Breathable: True/False. default: True. whether a character can breathe in the hex
+#Walkable: True/False. default: True. whether one can walk on the terrain.
+#Climbable: True/False. default: False. whether one needs climbing skill/tool for the hex
+#WaterDepth: 0-10000. default: 0. how deep the water is in cm.
+#Stability: 0-100. default: 0. how easy it is to stumble while entering or performing an action in a hex. 0 is easiest, 100 hardest.
+#PathCost: 1-1000000. default: 100. In pathfinding, determines the cost of moving into this hex. 
+#MovementCost: 1-1000000. default: 100. Actual cost of walking into the hex. Default: 100
+#LOSCost: 1-100000. default: 10. How much the hex "eats" vision. Fog has higher than clear air.
+#Damage: -10000-10000. default: 0. Determines if player takes Damage while on the hex. Can be negative for healing.
+#DamageType: WE HAVEN'T ACTUALLY MADE ANYTHING WITH ELEMENTS OR DAMAGETYPES YET. default: normal.
+#ManaDrain: -10000-10000. default: 0. Determines if the player's mana is drained while on the hex. Can be negative for boost.
+#BatteryDrain: -10000-10000. default: 0. Determines if the player's battery is drained while on the hex. Can be negative for boost.
+#ItemDamage: 0-100. default: 0. Determines if Items get Damaged. Needs probably expanding. What Items are affected? how?
+#Trappable: True/False. default: True. Determines if the hex can contain a trap.
+#Property1-3: JUST TO BE SURE!
+
+[smoothFloor]
+name = smooth floor
+sprite = smoothfloor.png
+symbol = .
+quickDescription = cavern floor
+longDescription = It's a dusty cavern floor. Nothing special about it.
+colourRed = 220
+colourGreen = 220
+colourBlue = 220
+solid = False
+swimmable = False
+breathable = True
+walkable = True
+climbable = False
+waterDepth = 0
+stability = 0
+movementCost = 100
+LOSCost = 10
+damage1 = 0
+damage1Type = None
+damage2 = 0
+damage2Type = None
+damage3 = 0
+damage3Type = None
+staminaDrain = 0
+batteryDrain = 0
+manaDrain = 0
+trappable = True
+
+
+[earth]
+name = earth
+sprite = earth.png
+symbol = #
+quickDescription = solid earth
+longDescription = Good old mother earth. This rock supports the vast masses that lie upon you.
+colourRed = 160
+colourGreen = 160
+colourBlue = 160
+solid = True
+swimmable = False
+breathable = False
+walkable = True
+climbable = False
+waterDepth = 0
+stability = 0
+movementCost = 10000
+LOSCost = 1000
+damage1 = 0
+damage1Type = None
+damage2 = 0
+damage2Type = None
+damage3 = 0
+damage3Type = None
+staminaDrain = 0
+batteryDrain = 0
+manaDrain = 0
+trappable = False
+
+
+[water]
+name = water
+sprite = water.png
+symbol = ~
+quickDescription = water
+longDescription = It's water. Deep enough that you can drown in it.
+colourRed = 80
+colourGreen = 80
+colourBlue = 240
+solid = False
+swimmable = True
+breathable = True
+walkable = False
+climbable = False
+waterDepth = 100
+stability = 0
+movementCost = 100
+LOSCost = 10
+damage1 = 0
+damage1Type = None
+damage2 = 0
+damage2Type = None
+damage3 = 0
+damage3Type = None
+staminaDrain = 0
+batteryDrain = 0
+manaDrain = 0
+trappable = True

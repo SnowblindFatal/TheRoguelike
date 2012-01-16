@@ -1,0 +1,21 @@
+[Leather armour]
+Name="leather armour"
+Type="armour"
+Location="chest"
+Value=50
+Weight=25
+Defence=13
+UsableByHuman=True
+UsableByUndead=False
+UsableByRobot=False
+
+[Chain Mail]
+Name="chain mail"
+Type="armour"
+Location="chest"
+Value=507
+Weight=288
+Defence=135
+UsableByHuman=True
+UsableByUndead=False
+UsableByRobot=False
