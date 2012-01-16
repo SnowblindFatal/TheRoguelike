@@ -1,6 +1,5 @@
 package RootPackage;
 import LevelGenerators.StupidGenerator;
-import TerrainTypes.TerrainLoader;
 import TerrainTypes.TerrainType;
 
 import java.util.Map;
@@ -19,7 +18,7 @@ public class MainClass
         System.out.println("helo");
         StupidGenerator newMap = new StupidGenerator();
         System.out.print("lul");
-        Map<String, TerrainType> terrainMap = TerrainLoader.loadTerrains();
+        Map<String, TerrainType> terrainMap = TerrainType.loadTerrains();
         System.out.println(terrainMap.get("earth").getLongDescription());
     }
 }
