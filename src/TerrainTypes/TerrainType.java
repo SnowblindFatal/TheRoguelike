@@ -1,16 +1,25 @@
-package TerrainTypes;
+package terraintypes;
+
+import helpers.InputParse;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 
 /**
  * User: JS
  * Date: 16.1.2012
  * Time: 18:29
- * Package: TerrainTypes
+ * Package: terraintypes
  */
 public class TerrainType {
     private String name, sprite, symbol, damage1Type, damage2Type, damage3Type, quickDescription, longDescription;
     private Boolean solid, swimmable, breathable, walkable, climbable, trappable;
-    private int colourRed, colourGreen, colourBlue, waterDepth, stability, movementCost, LOSCost, damage1, damage2, damage3, staminaDrain, batteryDrain, manaDrain;
-    
+    private int waterDepth, stability, movementCost, LOSCost, damage1, damage2, damage3, staminaDrain, batteryDrain, manaDrain;
+    private int[] colour;
+
     public TerrainType(){
 
 
@@ -19,9 +28,7 @@ public class TerrainType {
         symbol = ".";
         quickDescription = "cavern floor";
         longDescription = "it's a dusty cavern floor. Nothing special about it";
-        colourRed = 192;
-        colourGreen = 192;
-        colourBlue = 192;
+        colour = new int[]{192, 192, 192};
         solid = false;
         swimmable = false;
         breathable = true;
@@ -41,6 +48,50 @@ public class TerrainType {
         batteryDrain = 0;
         manaDrain = 0;
         trappable = true;
+    }
+
+    public static HashMap<String, TerrainType> loadTerrains(){
+        HashMap<String, TerrainType> terrainMap = new HashMap();
+        try{
+            // Open the file that is the first
+            // command line parameter
+            FileInputStream fstream = new FileInputStream("resources/configfiles/terraintypes.txt");
+            // Get the object of DataInputStream
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String newFeature = "dummy", currentLine, currentList[];
+            //Read File Line By Line
+            while ((currentLine = br.readLine()) != null)   {
+                currentList = currentLine.split("=", 2);
+                currentList[0] = currentList[0].trim();
+                if (currentList[0].length() == 0){
+                    continue;
+                }
+                switch((currentList[0].charAt(0))){
+                    //looks messy, but basically we check the first character of the new line
+                    case '#':
+                        continue;
+                    case '[':
+                        newFeature = currentList[0].substring(1, currentList[0].length() - 1);
+                        terrainMap.put(newFeature, new TerrainType());
+                        //System.out.println(terrainMap.get(newFeature).getName());
+                        continue;
+                    default:
+                        if (currentList.length == 2){
+                            currentList[1] = currentList[1].trim().toLowerCase();
+                            terrainMap.get(newFeature).enterData(currentList);
+                        }
+                }
+
+            }
+            //Close the input stream
+            in.close();
+        }catch (Exception e){//Catch exception if any
+            System.err.println("Error: " + e.getMessage());
+        }
+
+
+        return terrainMap;
     }
 
     public void enterData(String arguments[]){
@@ -65,28 +116,14 @@ public class TerrainType {
             case "longdescription":
                 setLongDescription(arguments[1]);
                 break;
-            case "colourred":
+            case "colour":
                 try{
-                setColourRed(Integer.parseInt(arguments[1]));
+                    int[] colourArray = InputParse.inputToIntArray3(arguments[1]);
+
+                    setColour(colourArray);
                 }
                 catch(Exception e){
-                    System.out.println(name + "Setting red colour failed. " + e.getMessage());
-                }
-                break;
-            case "colourgreen":
-                try{
-                    setColourGreen(Integer.parseInt(arguments[1]));
-                }
-                catch(Exception e){
-                    System.out.println(name + "Setting green colour failed. " + e.getMessage());
-                }
-                break;
-            case "colourblue":
-                try{
-                    setColourBlue(Integer.parseInt(arguments[1]));
-                }
-                catch(Exception e){
-                    System.out.println("terraintype: " + name + ". Setting blue colour failed. " + e.getMessage());
+                    System.out.println("terraintype: " + name + ". Invalid colour input. " + e.getMessage());
                 }
                 break;
             case "solid":
@@ -131,7 +168,7 @@ public class TerrainType {
                 break;
             case "waterdepth":
                 try{
-                    setColourBlue(Integer.parseInt(arguments[1]));
+                    setWaterDepth(Integer.parseInt(arguments[1]));
                 }
                 catch(Exception e){
                     System.out.println("terraintype: " + name + ". Setting blue colour failed. " + e.getMessage());
@@ -268,25 +305,12 @@ public class TerrainType {
         return longDescription;
     }
 
-    public void setColourRed(int newColourRed){
-        colourRed = newColourRed;
-    }
-    public int getColourRed(){
-        return colourRed;
+    public int[] getColour() {
+        return colour;
     }
 
-    public void setColourGreen(int newColourGreen){
-        colourGreen = newColourGreen;
-    }
-    public int getColourGreen(){
-        return colourGreen;
-    }
-
-    public void setColourBlue(int newColourBlue){
-        colourBlue = newColourBlue;
-    }
-    public int getColourBlue(){
-        return colourBlue;
+    public void setColour(int[] colour) {
+        this.colour = colour;
     }
 
     public void setSolid(Boolean newSolid){

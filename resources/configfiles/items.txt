@@ -1,0 +1,35 @@
+
+[apple]
+name = apple
+symbol = %
+quickDescription = an apple
+longDescription = A delicious apple. Juicy and fresh!
+sprite = apple.png
+type = food
+location = hand
+
+weight = 3
+nutrition = 50
+chanceOfSickness = 0
+useSpeed = 100
+inventorySize = 0
+usable = true;
+
+wearableByHuman = false
+usableByHuman = true
+wearableByUndead = false
+usableByUndead = false
+wearableByRobot = false
+usableByRobot = false
+isContainer = false
+
+defenceBonus = 0, 0, 0
+evasionBonus = 0, 0, 0
+durability = 0, 0, 1
+baseValue = 1, 3, 4
+damageDiceX = 1, 3, 1
+damageDiceY = 1, 3, 2
+damageDiceZ = 3, 3, 3
+accuracy = 1, 2, -5
+criticalChance = 0, 0, 1
+attackSpeed = 0, 0, 0

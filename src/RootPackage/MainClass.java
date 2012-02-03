@@ -1,14 +1,17 @@
-package RootPackage;
-import LevelGenerators.StupidGenerator;
-import TerrainTypes.TerrainType;
+package rootpackage;
+import terraintypes.TerrainType;
+import items.ItemMold;
+import items.Item;
+import levelgenerators.StupidGenerator;
 
-import java.util.Map;
+
+import java.util.HashMap;
 
 /**
  * User: JS
  * Date: 9.1.2012
  * Time: 6:19
- * Package: LevelGenerators
+ * Package: levelgenerators
  */
 
 public class MainClass
@@ -18,7 +21,15 @@ public class MainClass
         System.out.println("helo");
         StupidGenerator newMap = new StupidGenerator();
         System.out.print("lul");
-        Map<String, TerrainType> terrainMap = TerrainType.loadTerrains();
+        HashMap<String, TerrainType> terrainMap = TerrainType.loadTerrains();
         System.out.println(terrainMap.get("earth").getLongDescription());
+        System.out.println(terrainMap.get("water").getLongDescription());
+        HashMap<String, ItemMold> itemDictionary = ItemMold.loadItems();
+        Item testItem = new Item(itemDictionary.get("apple"));
+        System.out.println(testItem.getName());
+        System.out.println(String.valueOf(testItem.getDamageDice()[0]) + ", " + String.valueOf(testItem.getDamageDice()[1]) + ", " + String.valueOf(testItem.getDamageDice()[2]));
+
+
+
     }
 }
