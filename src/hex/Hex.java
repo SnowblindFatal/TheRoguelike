@@ -1,6 +1,6 @@
 package hex;
 
-import terraintypes1.TerrainType;
+import terraintypes.TerrainType;
 
 import java.util.ArrayList;
 
