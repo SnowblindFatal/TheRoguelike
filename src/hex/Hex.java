@@ -1,9 +1,8 @@
 package hex;
 
-import terraintypes.TerrainType;
+import terraintypes1.TerrainType;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * User: JS
